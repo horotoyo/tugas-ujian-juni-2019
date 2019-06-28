@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
-@section('title', 'Create Category')
+@section('title', 'Tambah Kategori')
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Create Category
+      Tambah Kategori    
   </h1>
   <ol class="breadcrumb">
-    <li><a href="{{ route('home.index') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="{{ route('categories.index') }}">Categories</a></li>
-    <li class="active">Create Category</li>
+    <li><a href="{{ route('home.index') }}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li><a href="{{ route('categories.index') }}">Kategori</a></li>
+    <li class="active">Tambah Kategori</li>
   </ol>
 </section>
 
@@ -21,15 +21,15 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <a href="{{ route('categories.index') }}" class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Back</a>
+          <a href="{{ route('categories.index') }}" class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
         </div>
 
         <form method="post" action="{{ route('categories.store') }}">
           @csrf
           <div class="box-body">
             <div class="form-group">
-              <label for="name">Category Name</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Enter Category Name">
+              <label for="name">Kategori Buku</label>
+              <input type="text" class="form-control" name="name" id="name" placeholder="Masukan Kategori">
             </div>
           </div>
           <!-- /.box-body -->

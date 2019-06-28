@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use DataTables;
 use Form;
 use App\Model\Category;
+use Kris\LaravelFormBuilder\FormBuilder;
+use App\Forms\CategoryForm;
 
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource. php artisan vendor:publish --provider="Yajra\DataTables\DataTablesServiceProvider"
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,9 +48,14 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(FormBuilder $formBuilder)
     {
-        //
+        $form = $formBuilder->create(CategoryForm::class, [
+            'method'    => 'POST',
+            'url'       => route('categories.store')
+        ]);
+
+        return view('admin.categories.create', compact('form'));
     }
 
     /**
@@ -56,9 +64,17 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, FormBuilder $formBuilder)
     {
-        //
+
+        $form = $formBuilder->create(CategoryForm::class);
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        Category::create($request->all());
+        return redirect(route('categories.index'))->with('success',trans('message.create'));
     }
 
     /**
@@ -103,6 +119,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::find($id)->delete();
+        return redirect(route('categories.index'));
     }
 }

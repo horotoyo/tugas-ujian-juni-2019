@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>DeLatte | @yield('title')</title>
+  <title>PerpusApp | @yield('title')</title>
 
   @include('layouts.parts.css')
   
   @yield('css')
 
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
   @include('layouts.parts.header')

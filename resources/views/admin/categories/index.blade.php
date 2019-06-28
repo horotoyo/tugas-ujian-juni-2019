@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Categories')
+@section('title', 'Kategori Buku')
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Categories
+    Kategori Buku
   </h1>
   <ol class="breadcrumb">
-    <li><a href="{{ route('home.index') }}"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li class="active">Categories</li>
+    <li><a href="{{ route('home.index') }}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+    <li class="active">Kategori Buku</li>
   </ol>
 </section>
 
@@ -20,7 +20,7 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Create</a>
+          <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -28,8 +28,8 @@
             <thead>
             <tr>
               <th width="5%">No</th>
-              <th>Category Name</th>
-              <th>Created At</th>
+              <th>Kategori Buku</th>
+              <th>Dibuat Pada</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -51,7 +51,6 @@
 @section('script')
   <script src="{{ asset('adminlte/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
   <script src="{{ asset('adminlte/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
-  <script src="{{ asset('adminlte/dist/js/custom.js') }}"></script>
   <script type="text/javascript">
     var table;
     $(function() {
