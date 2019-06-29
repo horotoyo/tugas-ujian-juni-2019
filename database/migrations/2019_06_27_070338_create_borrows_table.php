@@ -19,9 +19,9 @@ class CreateBorrowsTable extends Migration
             $table->unsignedBigInteger('book_id');
             $table->string('staff_name', 50);
             $table->string('time_period', 50);
-            $table->dateTime('borrow_date');
-            $table->dateTime('return_date');
-            $table->enum('status',['on time', 'late', 'missing']);
+            $table->date('borrow_date')->nullable();
+            $table->date('return_date')->nullable();
+            $table->enum('status',['on time', 'late', 'missing'])->nullable();
             $table->text('note')->nullable();
             $table->timestamps();
 

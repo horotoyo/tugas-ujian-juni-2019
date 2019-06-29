@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
-@section('title', 'Kategori Buku')
+@section('title', 'Daftar Buku')
 
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Kategori Buku
+    Daftar Buku
   </h1>
   <ol class="breadcrumb">
     <li><a href="{{ route('home.index') }}"><i class="fa fa-dashboard"></i> Beranda</a></li>
-    <li class="active">Kategori Buku</li>
+    <li class="active">Daftar Buku</li>
   </ol>
 </section>
 
@@ -20,7 +20,7 @@
     <div class="col-xs-12">
       <div class="box box-primary">
         <div class="box-header with-border">
-          <a href="{{ route('categories.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data</a>
+          <a href="{{ route('books.create') }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i> Tambah Data</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -28,8 +28,11 @@
             <thead>
             <tr>
               <th width="5%">No</th>
-              <th>Kategori Buku</th>
-              <th>Dibuat Pada</th>
+              <th>Judul</th>
+              <th>ISBN</th>
+              <th>Kategori</th>
+              <th>Penulis</th>
+              <th>Jumlah</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -61,9 +64,12 @@
             order: [[0,'desc']],
             columns: [
                 { data: 'id', searchable: true, orderable: true},
-                { data: 'name', searchable: true, orderable: true},
-                { data: 'created_at', searchable: true, orderable: true},
-                { data: 'action', searchable: false, orderable: false}
+                { data: 'title', searchable: true, orderable: true},
+                { data: 'isbn', searchable: true, orderable: true},
+                { data: 'category_id', searchable: true, orderable: true},
+                { data: 'author', searchable: true, orderable: true},
+                { data: 'quantity', searchable: true, orderable: true},
+                { data: 'action', searchable: true, orderable: true},
             ],
             columnDefs: [{
               "targets": 0,

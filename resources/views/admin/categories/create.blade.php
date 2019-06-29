@@ -19,25 +19,21 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
+      {!! form_error($form) !!}
       <div class="box box-primary">
         <div class="box-header with-border">
           <a href="{{ route('categories.index') }}" class="btn btn-warning"><i class="fa fa-arrow-circle-left"></i> Kembali</a>
         </div>
 
-        <form method="post" action="{{ route('categories.store') }}">
-          @csrf
+            {!! form_start($form) !!}
           <div class="box-body">
-            <div class="form-group">
-              <label for="name">Kategori Buku</label>
-              <input type="text" class="form-control" name="name" id="name" placeholder="Masukan Kategori">
-            </div>
+              {!! form_row($form->name); !!}
           </div>
-          <!-- /.box-body -->
-
           <div class="box-footer">
-            <button type="submit" class="btn btn-primary"><i class="fa fa-send"></i> Submit</button>
+              {!! form_rest($form) !!}
           </div>
-        </form>
+            {!! form_end($form, $renderRest = true) !!}
+
       </div>
       <!-- /.box -->
     </div>

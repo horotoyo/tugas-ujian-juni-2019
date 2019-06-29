@@ -34,6 +34,18 @@
         <a href="{{ route('categories.index') }}"><i class="fa fa-tags"></i> <span>Kategori</span></a>
       </li>
 
+      <li class="{{ Request::is('members') || Request::is('members/*') ? 'active' : '' }}">
+        <a href="{{ route('members.index') }}"><i class="fa fa-users"></i> <span>Member</span></a>
+      </li>
+
+      <li class="{{ Request::is('books') || Request::is('books/*') ? 'active' : '' }}">
+        <a href="{{ route('books.index') }}"><i class="fa fa-book"></i> <span>Buku</span></a>
+      </li>
+
+      <li class="{{ Request::is('borrows') || Request::is('borrows/*') ? 'active' : '' }}">
+        <a href="{{ route('borrows.index') }}"><i class="fa fa-clipboard"></i> <span>Peminjaman</span></a>
+      </li>
+
     </ul>
   </section>
   <!-- /.sidebar -->

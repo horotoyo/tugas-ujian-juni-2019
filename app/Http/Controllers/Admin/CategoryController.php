@@ -35,7 +35,7 @@ class CategoryController extends Controller
                 ->addColumn('action', function ($index) {
                     $tag = Form::open(array("url" => route('categories.destroy',$index->id), "method" => "DELETE"));
                     $tag .= "<a href=".route('categories.edit', $index->id)." class='btn btn-primary btn-xs' style='margin-right:0.3vw'>Edit</a>";
-                    $tag .= "<button type='submit' class='deletedata btn btn-danger btn-xs'>Delete</button>";
+                    $tag .= "<button type='submit' class='deletedata btn btn-danger btn-xs' onclick='javascript:return confirm(\"Apakah anda yakin ingin menghapus data ini?\")'>Delete</button>";
                     $tag .= Form::close();
                     return $tag;
                 })
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         }
 
         Category::create($request->all());
-        return redirect(route('categories.index'))->with('success',trans('message.create'));
+        return redirect(route('categories.index'))->with('success', trans('message.create'));
     }
 
     /**
@@ -94,9 +94,15 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, FormBuilder $formBuilder)
     {
-        //
+        $form = $formBuilder->create(CategoryForm::class, [
+            'method'    => 'PUT',
+            'url'       => route('categories.update', $id)
+        ]);
+
+        $category   = Category::find($id);
+        return view('admin.categories.edit', compact('category', 'form'));
     }
 
     /**
@@ -106,9 +112,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, FormBuilder $formBuilder)
     {
-        //
+        $form = $formBuilder->create(CategoryForm::class);
+
+        if (!$form->isValid()) {
+            return redirect()->back()->withErrors($form->getErrors())->withInput();
+        }
+
+        Category::find($id)->update($request->all());
+        return redirect(route('categories.index'))->with('success', trans('message.create'));
     }
 
     /**
